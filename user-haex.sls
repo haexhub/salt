@@ -4,7 +4,7 @@ user account for haex:
     - shell: /bin/bash
     - home: /home/haex
     - groups:
-{% if grains['os'] == 'RedHat' %}
+{% if grains['os'] == 'Fedora' %}
       - wheel
 {% else %}    
       - sudo
