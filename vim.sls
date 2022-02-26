@@ -1,5 +1,5 @@
 install vim:
   pkg.installed:
-    - pgks: 
+    - pkgs: 
       - vim
 
