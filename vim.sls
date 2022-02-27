@@ -1,3 +1,3 @@
 install vim:
   pkg.installed:
-    - name: vim
+    - name: git
