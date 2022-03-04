@@ -3,7 +3,7 @@ install vim:
     - name: {{ pillar['editor'] }}
   
   file.append:
-    - source: '/etc/vim/vimrc'
+    - source: '/etc/vimrc'
     - text: |
         " General
         set number	" Show line numbers
