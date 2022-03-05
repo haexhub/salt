@@ -1,6 +1,6 @@
 install vim:
   pkg.installed:
-    - name: {{ pillar['editor'] }}
+    - name: {{ pillar['pkg']['vim'] }}
   
   file.append:
     - name: '/etc/vimrc'
