@@ -6,6 +6,6 @@ configure ssh daemon:
   service.running:
     - name: sshd
     - reload: True
-    # - watch:
-    #   - file: /etc/ssh/sshd_config
+    - watch:
+      - file: /etc/ssh/sshd_config
   
