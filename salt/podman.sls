@@ -10,6 +10,6 @@ install podman:
 
   pip.installed:
     - name: docker
-    - require:
-      - pkg: python-pip
+    # - require:
+    #   - pkg: python-pip
   
