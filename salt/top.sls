@@ -5,3 +5,4 @@ base:
     - ssh
   'haex.space':
     - podman
+    - traefik
