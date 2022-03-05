@@ -3,6 +3,7 @@ configure ssh daemon:
     - name: /etc/ssh/sshd_config
     - source: salt://ssh/sshd_config
   
-  service.running:
+  service.mod_watch:
     - name: sshd
+    - full_restart: True
   
