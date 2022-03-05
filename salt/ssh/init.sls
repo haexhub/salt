@@ -3,3 +3,7 @@ configure ssh daemon:
     - name: /etc/ssh/sshd_config
     - source: salt://ssh/sshd_config
   
+  service:
+    - name: sshd
+    - restart: True
+  
