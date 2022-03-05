@@ -1,6 +1,6 @@
 base:
   '*':
     - vim
-    - user-haex
+    - user.haex
   'haex.space':
     - podman
