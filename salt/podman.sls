@@ -2,7 +2,7 @@ install podman:
   pkg.installed:
     - pkgs: 
       - podman
-      - python-pip
+      - python3-pip
 
   file.append:
     - name: /root/.bashrc
