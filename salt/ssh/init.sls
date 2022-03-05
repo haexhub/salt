@@ -5,5 +5,4 @@ configure ssh daemon:
   
   service.running:
     - name: sshd
-    - reload: True
   
