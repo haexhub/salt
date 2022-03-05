@@ -13,3 +13,6 @@ creat user account for haex with ssh key:
   file.managed:
     - name: /home/haex/.ssh/authorized_keys
     - source: salt://user/haex/deadmines.pub
+    - user: haex
+    - group: haex
+    - makedirs: True
