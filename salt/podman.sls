@@ -9,7 +9,9 @@ install podman:
     - text: alias docker=podman
 
   pip.installed:
-    - name: docker
+    - pkgs: 
+      - docker
+      - docker-compose
     # - require:
     #   - pkg: python3-pip
   
