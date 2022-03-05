@@ -1,2 +1,0 @@
-disable root ssh login:
-  
