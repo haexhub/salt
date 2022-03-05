@@ -11,5 +11,5 @@ install podman:
   pip.installed:
     - name: docker
     # - require:
-    #   - pkg: python-pip
+    #   - pkg: python3-pip
   
