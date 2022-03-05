@@ -1,9 +1,8 @@
 install podman:
   pkg.installed:
-    - name: podman
-  
-  pkg.installed:
-    - name: python-pip
+    - pkgs: 
+      - podman
+      - python-pip
 
   file.append:
     - name: /root/.bashrc
