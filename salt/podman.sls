@@ -12,6 +12,4 @@ install podman:
     - pkgs: 
       - docker
       - docker-compose
-    # - require:
-    #   - pkg: python3-pip
   
