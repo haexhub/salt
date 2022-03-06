@@ -1,9 +1,10 @@
 Build and Deploy traefik container:
-  docker.client.container:
+  docker.installed:
     traefik:
-      image: traefik:latest
-      ports:
-        - 8080:8080
+      - image: traefik:latest
+      - name: traefik
+      - require:
+        - docker: traefik_pulled
 
   # docker_container.running:
   #   - name: traefik
