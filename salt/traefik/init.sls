@@ -1,5 +1,5 @@
 Build and Deploy traefik container:
-  docker.installed:
+  docker_container.installed:
     - image: traefik:latest
     - name: traefik
 
