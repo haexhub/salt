@@ -1,3 +1,7 @@
 Deploy traefik container:
-  dockercompose.up:
-    - path: salt://traefik/docker-compose.yml
+  docker.client.compose:
+    source: 
+      image: salt://traefik/docker-compose.yml
+    traefik:
+      status: up
+      pull: true
