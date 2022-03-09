@@ -5,7 +5,7 @@ install podman:
       - python3-pip
 
   file.append:
-    - name: /root/.bashrc
+    - name: /etc/bashrc
     - text: alias docker=podman
 
   pip.installed:
