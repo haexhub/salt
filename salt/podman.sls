@@ -3,6 +3,7 @@ install podman:
     - pkgs: 
       - podman
       - python3-pip
+      - docker-compose
 
   file.append:
     - name: /etc/bashrc

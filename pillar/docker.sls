@@ -1,2 +1,3 @@
 docker:
-  registry: 'https://hub.docker.com/'
+  traefik: 
+    image: traefik:latest
