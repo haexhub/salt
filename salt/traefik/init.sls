@@ -1,4 +1,4 @@
 Build and Deploy traefik container:
-  docker_container.running:
+  docker_container.run:
     - image: traefik:latest
-    - name: traefik
+    - name: traefik:latest

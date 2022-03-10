@@ -6,3 +6,4 @@ base:
   'haex.space':
     - podman
     - traefik
+    - traefik
