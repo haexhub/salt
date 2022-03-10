@@ -3,9 +3,9 @@ Build and Deploy traefik container:
     - name: /usr/share/docker/traefik/docker-compose.yml
     - makedirs: True
     - source: salt://traefik/docker-compose.yml
-    
+
   docker_container.running:
-    - image: /usr/share/docker/traefik/docker-compose.yml
+    - image: traefik:latest
     - name: traefik
   
   
