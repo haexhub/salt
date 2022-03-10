@@ -4,5 +4,5 @@ Build and Deploy traefik container:
     - name: traefik
   
   file.managed:
-    - name: /usr/share/docker/docker-compose.yml
-    - source: salt://traefik/docker-compose.ml
+    - name: /usr/share/docker/traefik/docker-compose.yml
+    - source: salt://traefik/docker-compose.yml
