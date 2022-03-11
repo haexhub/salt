@@ -13,4 +13,7 @@ install podman:
     - pkgs: 
       - docker
       - docker-compose
+
+  service.running:
+    - name: podman
   
