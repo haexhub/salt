@@ -1,3 +1,7 @@
 docker:
-  traefik: 
-    image: traefik:latest
+  containers:
+  running:
+    - traefik
+
+  traefik:
+    image: "traefik:latest"
