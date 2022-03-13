@@ -4,10 +4,6 @@ Build and Deploy traefik container:
     - makedirs: True
     - source: salt://traefik/docker-compose.yml
 
-  docker.pulled:
-    - name: traefik
-    - tag: latest
-    
   docker_image.present:
     - force: True
     - name: traefik
