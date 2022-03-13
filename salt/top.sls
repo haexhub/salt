@@ -6,4 +6,5 @@ base:
   'haex.space':
     - podman
     - traefik
+    - user.noxi
     
