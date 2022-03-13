@@ -3,8 +3,9 @@ creat user account for haex with ssh key:
     - name: haex
     - shell: /bin/bash
     - home: /home/haex
-    - groups:
-        - sudo: {{ pillar['group']['sudo'] }}
+    - optional_groups:
+        - sudo
+        - wheel
 
   file.managed:
     - name: /home/haex/.ssh/authorized_keys
