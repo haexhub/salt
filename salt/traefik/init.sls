@@ -6,7 +6,7 @@ Build and Deploy traefik container:
 
   docker_image.present:
     - force: True
-    - name: traefik
+    - name: traefik:latest
     - tag: traefik
     
   docker_container.running:
