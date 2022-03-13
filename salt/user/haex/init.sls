@@ -4,11 +4,7 @@ creat user account for haex with ssh key:
     - shell: /bin/bash
     - home: /home/haex
     - groups:
-      {% if grains['os'] == 'Fedora' or grains['os'] == 'RedHat' %}
-      - wheel
-      {% else %}    
-      - sudo
-      {% endif %}
+        - {{ pillar['group']['sudo'] }}
 
   file.managed:
     - name: /home/haex/.ssh/authorized_keys
