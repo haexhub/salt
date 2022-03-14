@@ -1,7 +1,7 @@
 base:
   '*':
     - pkg
-  'haex.space'
+  'haex.space':
     - hostname.haex_space
 
     
