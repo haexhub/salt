@@ -1,4 +1,4 @@
 set hostname:
   environ.setenv:
-    - name: hostname
+    - name: HOSTNAME
     - value: haex.space
