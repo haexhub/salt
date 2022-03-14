@@ -3,7 +3,8 @@ deploy traefik container:
     - name: traefik:latest
   module.run:
     - name: dockercompose.up
-    - path: /usr/share/docker/traefik/docker-compose.yml
+    - dockercompose.up:
+      - path: /usr/share/docker/traefik/docker-compose.yml
 {#
   docker_image.present:
     - name: traefik:latest
