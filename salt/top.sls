@@ -4,7 +4,7 @@ base:
     - user.haex
     - ssh
   'haex.space':
-    - podman
-    - traefik
+    - docker
+    - traefik.install
     - user.noxi
     

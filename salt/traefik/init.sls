@@ -5,7 +5,6 @@ Build and Deploy traefik container:
     - source: salt://traefik/docker-compose.yml
 
   docker_image.present:
-    - force: True
     - name: traefik:latest
     
   docker_container.running:
