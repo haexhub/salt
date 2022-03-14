@@ -1,3 +1,3 @@
 base:
   'haex.space':
-    - env.hostname.haex_space
+    - hostname.haex_space
