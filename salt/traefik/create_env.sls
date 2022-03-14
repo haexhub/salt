@@ -3,4 +3,4 @@ create env file:
     - name: /usr/share/docker/traefik/.env
     - makedirs: True
     - defaults:
-      - HOSTNAME={{ pillar['hostname'] }}
+      - HOSTNAME: {{ pillar['hostname'] }}
