@@ -1,5 +1,4 @@
 install docker and make sure daemon is running:
-
   pkg.installed:
     - fromrepo: https://download.docker.com/linux/fedora/docker-ce.repo
     - pkgs: 
