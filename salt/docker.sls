@@ -1,11 +1,11 @@
 install docker and make sure daemon is running:
-  pkg.installed:
+  {#pkg.installed:
     - fromrepo: docker-ce
     - pkgs: 
       - docker-ce
       - docker-ce-cli
       - containerd.io
-  
+  #}
   pkg.installed:
     - pkgs:
       - python3-pip
