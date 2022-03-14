@@ -1,3 +1,3 @@
 include:
-  - create_network
-  - run_container
+  - traefik.create_network
+  - traefik.run_container
