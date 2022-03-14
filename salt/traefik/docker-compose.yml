@@ -4,6 +4,7 @@ services:
   traefik:
     image: traefik:latest
     container_name: traefik
+    hostname: ${HOSTNAME}
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
@@ -22,6 +23,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
+    environment:
+      - HOSTNAME=${HOSTNAME}
     command: 
       --api.insecure
       --providers.docker
