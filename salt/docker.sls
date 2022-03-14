@@ -3,9 +3,7 @@ install docker and make sure daemon is running:
     - name: dnf -y install dnf-plugins-core
 
   cmd.run:
-    - name: dnf config-manager \
-    --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo
+    - name: 'dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'
 
   pkg.installed:
     - pkgs: 
