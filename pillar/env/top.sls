@@ -1,4 +1,4 @@
 base:
   'haex.space':
-    - env.haex_space
+    - env.hostname
   
