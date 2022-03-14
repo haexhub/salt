@@ -19,7 +19,5 @@ install docker and make sure daemon is running:
 
   service.running:
     - name: docker
-    - require: 
-      - pkg: docker
 
   
