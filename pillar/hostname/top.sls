@@ -1,3 +1,3 @@
 base:
   'haex.space':
-    - hostname.haex_space
+    - haex_space
