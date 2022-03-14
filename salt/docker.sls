@@ -1,15 +1,7 @@
 install docker and make sure daemon is running:
-  {#pkg.installed:
-    - fromrepo: docker-ce
-    - pkgs: 
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-  #}
-
-  pkg.installed:
-    - pkgs:
-      - python3-pip
+  pkgrepo.managed:
+    - baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+    - name: Docker-CE
       
   pkg.installed:
     - pkgs:
@@ -18,8 +10,10 @@ install docker and make sure daemon is running:
 
   pip.installed:
     - pkgs: 
-      - docker
       - docker-compose
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
 
   service.running:
     - name: docker
