@@ -6,7 +6,8 @@ deploy traefik container:
     - name: /usr/share/docker/traefik/docker-compose.yml
     - source: salt://traefik/docker-compose.yml
     - makedirs: True
-    
+
   module.run:
     - name: dockercompose.up
+    - force: True
     - path: /usr/share/docker/traefik/docker-compose.yml  
