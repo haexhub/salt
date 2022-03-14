@@ -37,8 +37,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.${HOST_NAME}`)"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.${HOST_NAME}`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${HOSTNAME}`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.${HOSTNAME}`)"
       - "traefik.http.routers.traefik-secure.entrypoints=websecure"
       - "traefik.http.routers.traefik-secure.tls.certresolver=le"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
