@@ -1,7 +1,7 @@
 install docker and make sure daemon is running:
   pkg.installed:
     - pkgs: 
-      - docker
+      - docker-ce
       - python3-pip
       - docker-compose
 
@@ -13,6 +13,6 @@ install docker and make sure daemon is running:
   service.running:
     - name: docker
     - require: 
-      - pkg: docker
+      - pkg: docker-ce
 
   
