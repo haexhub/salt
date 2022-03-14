@@ -1,5 +1,6 @@
 base:
   '*':
     - pkg
+    - hostname
 
     
