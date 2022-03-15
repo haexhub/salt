@@ -23,7 +23,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - traefikSSL:/etc/traefik/acme.json
+      - traefikSSL:/etc/traefik/
     environment:
       - HOSTNAME=${HOSTNAME}
     command: 
