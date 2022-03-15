@@ -6,5 +6,6 @@ base:
   'haex.space':
     - docker
     - traefik.install
+    - portainer
     - user.noxi
     
