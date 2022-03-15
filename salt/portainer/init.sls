@@ -1,6 +1,6 @@
 deploy portainer container:
   include:
-    - portainer.prepare
+    - prepare
   module.run:
     - name: dockercompose.up
     - force: True
