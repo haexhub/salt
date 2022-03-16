@@ -21,8 +21,8 @@ services:
       - "traefik.http.routers.portainer-secure.entrypoints=websecure"
       - "traefik.http.routers.portainer-secure.tls.certresolver=le"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-    command: 
-      --admin-password ${ADMIN_PASSWORD}
+    #command: 
+    #  --admin-password ${ADMIN_PASSWORD}
 
 volumes: 
   portainer_data:
