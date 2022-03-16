@@ -19,5 +19,7 @@ install docker and make sure daemon is running:
 
   service.running:
     - name: docker
+    - enable: True
+    - reload: True
 
   
