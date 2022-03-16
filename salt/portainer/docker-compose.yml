@@ -7,7 +7,7 @@ services:
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
-      - portainerData:/data
+      - portainer_data:/data
     networks:
       - web
     ports: 
@@ -25,8 +25,8 @@ services:
       --admin-password ${ADMIN_PASSWORD}
 
 volumes: 
-  portainerData:
-    name: portainerData
+  portainer_data:
+    name: portainer_data
 
 networks:
   web:
