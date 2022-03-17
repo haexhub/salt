@@ -9,6 +9,6 @@ deploy traefik container:
 
   module.run:
     dockercompose.down:
-      - path: /usr/share/docker/traefik/docker-compose.yml 
+    - path: /usr/share/docker/traefik/docker-compose.yml 
     dockercompose.up:
-      - path: /usr/share/docker/traefik/docker-compose.yml  
+    - path: /usr/share/docker/traefik/docker-compose.yml  
