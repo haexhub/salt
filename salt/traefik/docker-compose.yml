@@ -23,7 +23,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - traefikSSL:/etc/traefik/
+      - traefik_data:/etc/traefik/
     command: 
       --api.insecure
       --providers.docker
@@ -52,4 +52,5 @@ networks:
     name: web
 
 volumes:
-  traefikSSL:
+  traefik_data:
+    - name: traefik_data
