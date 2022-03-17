@@ -1,4 +1,5 @@
 include:
+  - portainer.create_env
   - portainer.prepare
   
 deploy portainer container:
