@@ -25,7 +25,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       #- traefik_data:/etc/traefik/
     command: 
-      # --api.insecure
+      --api.insecure
       --providers.docker
 
       --entrypoints.web.address=:80
