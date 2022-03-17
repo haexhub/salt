@@ -51,6 +51,6 @@ networks:
     driver: bridge
     name: web
 
-#volumes:
-#  traefik_data:
-#    - name: traefik_data
+volumes:
+  traefik_data:
+    name: traefik_data
