@@ -8,5 +8,5 @@ deploy traefik container:
     - makedirs: True
 
   module.run:
-    - dockercompose.up:
-      - path: /usr/share/docker/traefik/docker-compose.yml  
+    - name: dockercompose.up
+    - path: /usr/share/docker/traefik/docker-compose.yml  
