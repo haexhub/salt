@@ -4,7 +4,7 @@ services:
     image: mariadb:latest
     container_name: seafile-mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}  # Requested, set the root's password of MySQL service.
+      - SEAFILE_DB_ROOT_PASSWD=${SEAFILE_DB_ROOT_PASSWORD}  # Requested, set the root's password of MySQL service.
       - MYSQL_LOG_CONSOLE=true
     volumes:
       - seafile_mysql/db:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
@@ -29,11 +29,11 @@ services:
     environment:
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL} # Specifies Seafile admin user, default is 'me@example.com'.
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}     # Specifies Seafile admin password, default is 'asecret'.
-      - SEAFILE_DB_HOST=${SEAFILE_DB_HOST}
-      - SEAFILE_DB_ROOT_PASSWD=${SEAFILE_DB_ROOT_PASSWD}  # Requested, the value shuold be root's password of MySQL service.
+      - SEAFILE_DB_HOST=db
+      - SEAFILE_DB_ROOT_PASSWD=${SEAFILE_DB_ROOT_PASSWORD}  # Requested, the value shuold be root's password of MySQL service.
       - SEAFILE_SERVER_HOSTNAME=files.${HOSTNAME} # Specifies your host name if https is enabled.
       # - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
-      - TIME_ZONE=Etc/UTC+1  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - TIME_ZONE=${SEAFILE_TIMEZONE}  # Optional, default is UTC. Should be uncomment and set to your local time zone.
     depends_on:
       - db
       - memcached
