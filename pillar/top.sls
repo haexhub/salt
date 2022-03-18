@@ -4,5 +4,6 @@ base:
   'haex.space':
     - hostname.haex_space
     - traefik
+    - seafile
 
     
