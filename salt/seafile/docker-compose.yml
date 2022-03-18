@@ -29,7 +29,7 @@ services:
     environment:
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL} # Specifies Seafile admin user, default is 'me@example.com'.
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}     # Specifies Seafile admin password, default is 'asecret'.
-      - DB_HOST=db
+      - DB_HOST=seafile-mariadb
       - DB_ROOT_PASSWD=${SEAFILE_DB_ROOT_PASSWORD}  # Requested, the value shuold be root's password of MySQL service.
       - SEAFILE_SERVER_HOSTNAME=files.${HOSTNAME} # Specifies your host name if https is enabled.
       # - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
