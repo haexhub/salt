@@ -1,0 +1,58 @@
+version: '3'
+services:
+  db:
+    image: mariadb:latest
+    container_name: seafile-mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}  # Requested, set the root's password of MySQL service.
+      - MYSQL_LOG_CONSOLE=true
+    volumes:
+      - seafile_mysql/db:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
+    networks:
+      - seafile-net
+
+  memcached:
+    image: memcached:latest
+    container_name: seafile-memcached
+    entrypoint: memcached -m 256
+    networks:
+      - seafile-net
+          
+  seafile:
+    image: seafileltd/seafile-mc:latest
+    container_name: seafile
+    ports:
+      - "1280:80"
+      - "12443:443"  # If https is enabled, cancel the comment.
+    volumes:
+      - seafile_data:/shared   # Requested, specifies the path to Seafile data persistent store.
+    environment:
+      - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL} # Specifies Seafile admin user, default is 'me@example.com'.
+      - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}     # Specifies Seafile admin password, default is 'asecret'.
+      - SEAFILE_DB_HOST=${SEAFILE_DB_HOST}
+      - SEAFILE_DB_ROOT_PASSWD=${SEAFILE_DB_ROOT_PASSWD}  # Requested, the value shuold be root's password of MySQL service.
+      - SEAFILE_SERVER_HOSTNAME=files.${HOSTNAME} # Specifies your host name if https is enabled.
+      # - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
+      - TIME_ZONE=Etc/UTC+1  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+    depends_on:
+      - db
+      - memcached
+    networks:
+      - seafile-net
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.seafile.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.seafile.rule=Host(`files.${HOSTNAME}`)
+      - traefik.http.routers.seafile_secure.rule=Host(`files.${HOSTNAME}`)
+      - traefik.http.routers.seafile_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.seafile_secure.tls.certresolver=le
+      - traefik.http.services.seafile.loadbalancer.server.port=12443
+
+networks:
+  seafile-net:
+
+volumes:
+  seafile_data:
+    name: seafile_data
+  seafile_mysql:
+    name: seafile_mysql
