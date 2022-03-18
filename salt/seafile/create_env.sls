@@ -5,3 +5,5 @@ create seafile env file:
     - text: |
         SEAFILE_TIMEZONE = {{ pillar['seafile']['timezone'] }}
         SEAFILE_ADMIN_EMAIL = {{ pillar['seafile']['admin_email'] }}
+        TRAEFIK_HTTP_ENDPOINT = {{ pillar['traefik']['http_endpoint'] }}
+        TRAEFIK_HTTPS_ENDPOINT = {{ pillar['traefik']['https_endpoint'] }}
