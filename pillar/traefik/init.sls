@@ -1,2 +1,3 @@
-TRAEFIK_HTTP_ENDPOINT: web
-TRAEFIK_HTTP_ENDPOINT: web_secure
+traefik:
+  http_endpoint: web
+  https_endpoint: web_secure
