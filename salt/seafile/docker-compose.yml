@@ -3,7 +3,7 @@ services:
   db:
     image: mariadb:latest
     environment:
-      - MARIA_ROOT_PASSWORD=${SEAFILE_DB_ROOT_PASSWORD}  # Requested, set the root's password of MySQL service.
+      - MARIADB_ROOT_PASSWORD=${SEAFILE_DB_ROOT_PASSWORD}  # Requested, set the root's password of MySQL service.
       - MYSQL_LOG_CONSOLE=true
     volumes:
       - seafile_mysql:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
