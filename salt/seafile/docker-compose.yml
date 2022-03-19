@@ -10,7 +10,6 @@ services:
       - seafile_mysql:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
     networks:
       - seafile-net
-      - web
 
   memcached:
     image: memcached:latest
@@ -40,6 +39,7 @@ services:
       - memcached
     networks:
       - seafile-net
+      - web
     labels:
       - traefik.enable=true
       - traefik.http.routers.seafile.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
@@ -51,6 +51,7 @@ services:
 
 networks:
   seafile-net:
+  web:
 
 volumes:
   seafile_data:
