@@ -16,3 +16,7 @@ services:
       - traefik.http.routers.camunda_secure.tls.certresolver=le
       - traefik.http.services.camunda.loadbalancer.server.port=138080
     
+networks:
+  web:
+    name: web
+    external: true

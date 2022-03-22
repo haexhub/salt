@@ -51,6 +51,7 @@ services:
 networks:
   seafile-net:
   web:
+    external: true
 
 volumes:
   seafile_data:
