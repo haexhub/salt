@@ -1,3 +1,6 @@
+include:
+  - camunda.prepare
+  
 deploy camunda container:
   module.run:
     - name: dockercompose.up
