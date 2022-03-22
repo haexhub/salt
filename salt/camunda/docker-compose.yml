@@ -3,6 +3,7 @@ version: "3"
 services:
   camunda:
     image: camunda/camunda-bpm-platform:run-latest
+    container_name: camunda
     ports:
       - 127.0.0.1:138080:8080
     networks:
