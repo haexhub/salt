@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:run-latest
+    ports:
+      - 127.0.0.1:138080:8080
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.camunda.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.camunda.rule=Host(`camunda.${HOSTNAME}`)
+      - traefik.http.routers.camunda_secure.rule=Host(`camunda.${HOSTNAME}`)
+      - traefik.http.routers.camunda_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.camunda_secure.tls.certresolver=le
+      - traefik.http.services.camunda.loadbalancer.server.port=138080
+    
