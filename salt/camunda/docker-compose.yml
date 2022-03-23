@@ -8,6 +8,8 @@ services:
     restart: unless-stopped
     ports:
       - 38080:8080
+      - 38000:8000
+      - 39404:9404
     networks:
       - web
     labels:
