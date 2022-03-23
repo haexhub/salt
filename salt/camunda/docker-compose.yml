@@ -19,7 +19,7 @@ services:
       - traefik.http.routers.camunda_secure.rule=Host(`camunda.${HOSTNAME}`)
       - traefik.http.routers.camunda_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
       - traefik.http.routers.camunda_secure.tls.certresolver=le
-      - traefik.http.services.camunda.loadbalancer.server.port=38080
+      - traefik.http.services.camunda.loadbalancer.server.port=8080
     
 networks:
   web:
