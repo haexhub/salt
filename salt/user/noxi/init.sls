@@ -1,4 +1,4 @@
-creat user account for noxi with ssh key:
+create user account for noxi with ssh key:
   user.present:
     - name: noxi
     - shell: /bin/bash
