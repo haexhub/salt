@@ -5,6 +5,6 @@ base:
     - hostname.haex_space
     - traefik
     - seafile
-  'xintero.de'
+  'xintero.de':
     - hostname.xintero_de
     
