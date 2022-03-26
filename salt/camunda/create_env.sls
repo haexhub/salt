@@ -1,5 +1,5 @@
 create env file for camunda:
-  file.append:
+  file.managed:
     - name: /usr/share/docker/camunda/.env
     - makedirs: True
     - text: |
