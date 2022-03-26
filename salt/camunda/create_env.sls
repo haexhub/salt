@@ -1,8 +1,11 @@
 create env file for camunda:
+  file.absent:
+    - name: /usr/share/docker/camunda/.env
+
   file.managed:
     - name: /usr/share/docker/camunda/.env
     - makedirs: True
-    - defaults:
-        - HOSTNAME: {{ pillar['hostname'] }}
-        - TRAEFIK_HTTP_ENDPOINT: {{ pillar['traefik']['http_endpoint'] }}
-        #TRAEFIK_HTTPS_ENDPOINT = {{ pillar['traefik']['https_endpoint'] }}
+    - text: |
+        HOSTNAME = {{ pillar['hostname'] }}
+        TRAEFIK_HTTP_ENDPOINT = {{ pillar['traefik']['http_endpoint'] }}
+        # TRAEFIK_HTTPS_ENDPOINT = {{ pillar['traefik']['https_endpoint'] }}
