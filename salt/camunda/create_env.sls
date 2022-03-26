@@ -7,3 +7,4 @@ create env file for camunda:
         TRAEFIK_HTTPS_ENDPOINT: awdawd
     - separator: '='
     - append_if_not_found: True
+    - uncomment: '# '
