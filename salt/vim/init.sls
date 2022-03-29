@@ -13,6 +13,7 @@ install vim:
         set showmatch	" Highlight matching brace
         set visualbell	" Use visual bell (no beeping)
         
+        set statusline+=%F
         set hlsearch	" Highlight all search results
         set smartcase	" Enable smart-case search
         set ignorecase	" Always case-insensitive
