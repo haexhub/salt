@@ -14,7 +14,7 @@ install vim:
         set textwidth=100	" Line wrap (number of cols)
         set showmatch	" Highlight matching brace
         set visualbell	" Use visual bell (no beeping)
-        colorscheme slate
+        colorscheme delek
         
         set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
         set hlsearch	" Highlight all search results
