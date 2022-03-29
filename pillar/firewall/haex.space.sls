@@ -1,0 +1,1 @@
+default_firewall_zone: FedoraServer
