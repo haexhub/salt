@@ -6,7 +6,7 @@ install vim:
 make sure old config entries are removed:
   file.replace:
     - name: '/etc/vimrc'
-    - pattern: '"################################################################((.|\n)*)'
+    - pattern: '"################################################################((.|\s|\S)*)'
     - repl: ''
 
 add new vimrc config:
@@ -16,7 +16,7 @@ add new vimrc config:
 
         "################################################################
         " General
-        
+
         set number                " Show line numbers
         set linebreak             " Break lines at word (requires Wrap lines)
         set showbreak=+++         " Wrap-broken line prefix
