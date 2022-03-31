@@ -6,7 +6,7 @@ install vim:
 make sure old config entries are removed:
   file.replace:
     - name: '/etc/vimrc'
-    - pattern: '"################################################################.*|\n*'
+    - pattern: '"################################################################((.|\n)*)'
     - repl: ''
 
 add new vimrc config:
