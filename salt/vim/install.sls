@@ -23,14 +23,17 @@ add new vimrc config:
         set showmatch             " Highlight matching brace
         set visualbell            " Use visual bell (no beeping)
         let g:rehash256 = 1       " Molokai Theme
-        syntax on
+        syntax on                 " Turn syntax highlighting on.
         set statusline+=%F
-        
+        set cursorline            " Highlight cursor line underneath the cursor horizontally.
+        set cursorcolumn          " Highlight cursor line underneath the cursor vertically.
+
         set hlsearch              " Highlight all search results
         set smartcase             " Enable smart-case search
         set ignorecase            " Always case-insensitive
         set incsearch             " Searches for strings incrementally
         
+        set showcmd               " Show partial command you type in the last line of the screen.
         set autoindent            " Auto-indent new lines
         set expandtab	            " Use spaces instead of tabs
         set shiftwidth=2          " Number of auto-indent spaces
@@ -40,7 +43,7 @@ add new vimrc config:
         set wildmenu              " visual autocomplete for command menu
 
         " Advanced
-        set ruler	                " Show row and column ruler information
+        set ruler                 " Show row and column ruler information
         
-        set undolevels=1000	      " Number of undo levels
-        set backspace=indent,eol,start	" Backspace behaviour
+        set undolevels=1000       " Number of undo levels
+        set backspace=indent,eol,start  " Backspace behaviour
