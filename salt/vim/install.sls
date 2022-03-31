@@ -7,7 +7,7 @@ make sure old config entries are removed:
   file.replace:
     - name: '/etc/vimrc'
     - pattern: '"################################################################.*'
-    - replace: ''
+    - repl: ''
 
 add new vimrc config:
   file.append:
