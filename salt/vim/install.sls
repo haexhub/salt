@@ -9,6 +9,7 @@ make sure old config entries are removed:
     - pattern: '"################################################################.*'
     - replace: ''
 
+add new vimrc config:
   file.append:
     - name: '/etc/vimrc'
     - text: |
