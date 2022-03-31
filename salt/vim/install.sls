@@ -16,6 +16,7 @@ add new vimrc config:
 
         "################################################################
         " General
+        
         set number                " Show line numbers
         set linebreak             " Break lines at word (requires Wrap lines)
         set showbreak=+++         " Wrap-broken line prefix
@@ -35,7 +36,7 @@ add new vimrc config:
         
         set showcmd               " Show partial command you type in the last line of the screen.
         set autoindent            " Auto-indent new lines
-        set expandtab	            " Use spaces instead of tabs
+        set expandtab             " Use spaces instead of tabs
         set shiftwidth=2          " Number of auto-indent spaces
         set smartindent           " Enable smart-indent
         set smarttab              " Enable smart-tabs
