@@ -1,6 +1,6 @@
 base:
   '*':
-    - vim
+    - vim.install
     - user.haex
     - ssh
   'haex.space':
