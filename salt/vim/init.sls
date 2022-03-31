@@ -2,18 +2,19 @@ install vim:
   pkg.installed:
     - name: {{ pillar['pkg']['vim'] }}
   
+
   file.append:
     - name: '/etc/vimrc'
     - text: |
         " General
-        set number	" Show line numbers
-        set linebreak	" Break lines at word (requires Wrap lines)
-        "set foldenable          " enable folding
-        "set foldmethod=indent   " fold based on indent level
-        set showbreak=+++ 	" Wrap-broken line prefix
-        set textwidth=100	" Line wrap (number of cols)
-        set showmatch	" Highlight matching brace
-        set visualbell	" Use visual bell (no beeping)
+        set number	              " Show line numbers
+        set linebreak	            " Break lines at word (requires Wrap lines)
+        "set foldenable           " enable folding
+        "set foldmethod=indent    " fold based on indent level
+        set showbreak=+++ 	      " Wrap-broken line prefix
+        set textwidth=100	        " Line wrap (number of cols)
+        set showmatch	            " Highlight matching brace
+        set visualbell	          " Use visual bell (no beeping)
         let g:rehash256 = 1
         
         set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
