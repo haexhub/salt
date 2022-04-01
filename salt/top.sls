@@ -8,6 +8,6 @@ base:
     - traefik.install
     - seafile
     - portainer
-   # - camunda
+    - camunda
     - user.noxi
     
