@@ -8,7 +8,7 @@ services:
       - ./initdb.d:/docker-entrypoint-initdb.d:ro
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:? Postgress password NEEDED }
-    network:
+    networks:
       - hasura
 
   graphql-engine:
@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     #expose:
     #  - '8080:8080'
-    network:
+    networks:
       - hasura
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:? Postgress password NEEDED}@postgres:5432/postgres
@@ -48,7 +48,7 @@ services:
       AUTH_SMTP_PORT: 1025
     #expose: 
     #  - 4000
-    network:
+    networks:
       - hasura
     healthcheck:
       disable: true
@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
     #expose:
     #  - 4000
-    network:
+    networks:
       - hasura
       - web
     healthcheck:
@@ -101,7 +101,7 @@ services:
       MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_KEY}
     #ports:
     #  - ${MINIO_PORT:-8484}:8484
-    network:
+    networks:
       - hasura
     volumes:
       - ./data/minio:/data
@@ -118,7 +118,7 @@ services:
     #ports:
     #  - ${AUTH_SMTP_PORT:-1025}:1025 
     #  - 8025:8025
-    network:
+    networks:
       - hasura
     volumes:
       - hasura_mailhog:/maildir
