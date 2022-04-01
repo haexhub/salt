@@ -1,5 +1,5 @@
 make sure nhost env file exists:
-  file.present:
+  file.exists:
     - name: /usr/share/docker/nhost/.env
 
 set env parameter:
