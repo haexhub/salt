@@ -75,7 +75,7 @@ services:
       disable: true
     environment:
       STORAGE_HOST: '0.0.0.0'
-      STORAGE_PUBLIC_URL: http://localhost:${PROXY_PORT:-1337}/v1/storage
+      STORAGE_PUBLIC_URL: http://localhost:${PROXY_PORT:-433}/v1/storage
       HASURA_GRAPHQL_GRAPHQL_URL: http://graphql-engine:8080/v1/graphql
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-secretpgpassword}@postgres:5432/postgres
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
@@ -104,7 +104,7 @@ services:
     networks:
       - hasura
     volumes:
-      - ./data/minio:/data
+      - minio_data:/data
 
   mailhog:
     image: mailhog/mailhog
@@ -128,3 +128,8 @@ networks:
   hasura:
   web:
     external: true
+
+volumes:
+  hasura_db:
+  hasura_mailhog:
+  minio_data:
