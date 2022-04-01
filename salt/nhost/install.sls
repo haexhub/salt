@@ -1,3 +1,6 @@
+include:
+  - nhost.create_env
+  
 place nhost docker compose file and bring container up:
   file.managed:
     - name: /usr/share/docker/nhost/docker-compose.yml
