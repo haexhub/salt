@@ -27,7 +27,7 @@ services:
     command: 
       --api.insecure
       --providers.docker
-      --providers.docker.enableDefault=false
+      --providers.docker.exposedByDefault=false
 
       --entrypoints.${TRAEFIK_HTTP_ENDPOINT}.address=:80
       --entrypoints.${TRAEFIK_HTTPS_ENDPOINT}.address=:443
