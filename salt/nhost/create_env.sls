@@ -1,4 +1,7 @@
 create nhost env file:
+  file.present:
+    - name: /usr/share/docker/nhost/.env
+    
   file.keyvalue:
     - name: /usr/share/docker/nhost/.env
     - key_values: 
