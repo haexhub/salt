@@ -1,4 +1,4 @@
-create traefik env file:
+create nhost env file:
   file.keyvalue:
     - name: /usr/share/docker/nhost/.env
     - key_values: 
