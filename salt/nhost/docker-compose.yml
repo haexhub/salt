@@ -16,8 +16,8 @@ services:
     depends_on:
       - 'postgres'
     restart: unless-stopped
-    #expose:
-    #  - '8080:8080'
+    expose:
+      - '48080:8080'
     networks:
       - hasura
     environment:
@@ -28,9 +28,13 @@ services:
       HASURA_GRAPHQL_LOG_LEVEL: debug
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hasura.rule=Host(`localhost`) && PathPrefix(`/`)"
-      - "traefik.http.routers.hasura.entrypoints=web"
+      - traefik.enable=true
+      - traefik.http.routers.hasura.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.hasura.rule=Host(`ql.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_secure.rule=Host(`ql.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.hasura_secure.tls.certresolver=le
+      - traefik.http.services.graphql-engine.loadbalancer.server.port=8080
 
   auth:
     image: nhost/hasura-auth:latest
@@ -46,18 +50,22 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       AUTH_SMTP_HOST: mailhog
       AUTH_SMTP_PORT: 1025
-    #expose: 
-    #  - 4000
+    expose: 
+      - 44000:4000
     networks:
       - hasura
     healthcheck:
       disable: true
     labels:
+      - "traefik.http.routers.hasura_auth.middlewares=strip-auth@docker"
       - "traefik.enable=true"
-      - "traefik.http.middlewares.strip-auth.stripprefix.prefixes=/v1/auth"
-      - "traefik.http.routers.auth.rule=Host(`localhost`) && PathPrefix(`/v1/auth`)"
-      - "traefik.http.routers.auth.middlewares=strip-auth@docker"
-      - "traefik.http.routers.auth.entrypoints=web"
+      - "traefik.http.middlewares.strip-hasura_auth.stripprefix.prefixes=/v1/auth"
+      - traefik.http.routers.hasura_auth.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.hasura_auth.rule=Host(`ql.hasure.${HOSTNAME}`) && PathPrefix(`/v1/auth`)"
+      - traefik.http.routers.hasura_auth_secure.rule=Host(`ql.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_auth_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.hasura_auth_secure.tls.certresolver=le
+      - traefik.http.services.auth.loadbalancer.server.port=8080
 
   storage:
     image: nhost/hasura-storage:latest
