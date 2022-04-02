@@ -22,6 +22,7 @@ services:
   seafile:
     image: seafileltd/seafile-mc:latest
     container_name: seafile
+    restart: unless-stopped
     ports:
       - "2080:80"
      # - "12443:443"  # If https is enabled, cancel the comment.
@@ -35,6 +36,9 @@ services:
       - SEAFILE_SERVER_HOSTNAME=files.${HOSTNAME} # Specifies your host name if https is enabled.
       # - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
       - TIME_ZONE=${SEAFILE_TIMEZONE}
+      - LANG=de_DE.UTF-8
+      - LANGUAGE=de_DE.de
+      - LC_ALL=de_DE.UTF-8
     depends_on:
       - db
       - memcached
