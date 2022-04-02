@@ -47,6 +47,7 @@ services:
       - web
     labels:
       - traefik.enable=true
+      - traefik.docker.network=web
       - traefik.http.routers.seafile.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
       - traefik.http.routers.seafile.rule=Host(`files.${HOSTNAME}`)
 
