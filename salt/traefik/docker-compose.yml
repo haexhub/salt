@@ -50,6 +50,7 @@ networks:
   web:
     driver: bridge
     name: web
+    external: true
 
 volumes:
   traefik_data:
