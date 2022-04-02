@@ -17,7 +17,7 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 127.0.0.1:8080:8080
+      - 127.0.0.1:1080:8080
     networks:
       - web
     volumes:
@@ -27,6 +27,7 @@ services:
     command: 
       --api.insecure
       --providers.docker
+      --providers.docker.exposedByDefault=false
 
       --entrypoints.${TRAEFIK_HTTP_ENDPOINT}.address=:80
       --entrypoints.${TRAEFIK_HTTPS_ENDPOINT}.address=:443

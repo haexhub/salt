@@ -13,9 +13,9 @@ services:
     networks:
       - web
     ports: 
-      - 127.0.0.1:9443:9443
-      - 127.0.0.1:9000:9000
-      - 127.0.0.1:8000:8000
+      - 127.0.0.1:19443:9443
+      - 127.0.0.1:19000:9000
+      - 127.0.0.1:18000:8000
     labels: 
       - traefik.enable=true
       - traefik.http.routers.portainer.entrypoints=${TRAEFIK_HTTP_ENDPOINT}

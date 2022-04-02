@@ -1,0 +1,143 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - hasura_db:/var/lib/postgresql/data
+      - ./initdb.d:/docker-entrypoint-initdb.d:ro
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:? Postgress password NEEDED }
+    networks:
+      - hasura
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.2.0
+    depends_on:
+      - 'postgres'
+    restart: unless-stopped
+    expose:
+      - 8080
+    networks:
+      - hasura
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:? Postgress password NEEDED}@postgres:5432/postgres
+      HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
+      HASURA_GRAPHQL_LOG_LEVEL: debug
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.hasura_ql.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.hasura_ql.rule=Host(`ql.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_ql_secure.rule=Host(`ql.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_ql_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.hasura_ql_secure.tls.certresolver=le
+      - traefik.http.services.graphql-engine.loadbalancer.server.port=8080
+
+  auth:
+    image: nhost/hasura-auth:latest
+    depends_on:
+      - postgres
+      - graphql-engine
+    restart: unless-stopped
+    environment:
+      AUTH_HOST: '0.0.0.0'
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      HASURA_GRAPHQL_GRAPHQL_URL: http://graphql-engine:8080/v1/graphql
+      HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      AUTH_SMTP_HOST: mailhog
+      AUTH_SMTP_PORT: 1025
+    expose: 
+      - 4000
+    networks:
+      - hasura
+    healthcheck:
+      disable: true
+    labels:
+      - "traefik.http.routers.hasura_auth.middlewares=strip-auth@docker"
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.strip-hasura_auth.stripprefix.prefixes=/v1/auth"
+      - traefik.http.routers.hasura_auth.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.hasura_auth.rule=Host(`auth.hasure.${HOSTNAME}`) && PathPrefix(`/v1/auth`)"
+      - traefik.http.routers.hasura_auth_secure.rule=Host(`auth.hasure.${HOSTNAME}`)
+      - traefik.http.routers.hasura_auth_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.hasura_auth_secure.tls.certresolver=le
+      - traefik.http.services.auth.loadbalancer.server.port=4000
+
+  storage:
+    image: nhost/hasura-storage:latest
+    depends_on:
+      - postgres
+      - graphql-engine
+      - minio
+    restart: unless-stopped
+    expose:
+      - 4000
+    networks:
+      - hasura
+      - web
+    healthcheck:
+      disable: true
+    environment:
+      STORAGE_HOST: '0.0.0.0'
+      STORAGE_PUBLIC_URL: http://localhost:${PROXY_PORT:-433}/v1/storage
+      HASURA_GRAPHQL_GRAPHQL_URL: http://graphql-engine:8080/v1/graphql
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-secretpgpassword}@postgres:5432/postgres
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
+      S3_ACCESS_KEY: ${STORAGE_ACCESS_KEY}
+      S3_SECRET_KEY: ${STORAGE_SECRET_KEY}
+      S3_ENDPOINT: http://minio:8484
+      S3_BUCKET: nhost
+      STORAGE_FORCE_DOWNLOAD_FOR_CONTENT_TYPES: text/html,application/javascript
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.strip-storage.stripprefix.prefixes=/v1/storage"
+      - "traefik.http.routers.storage.rule=Host(`localhost`) && PathPrefix(`/v1/storage`)"
+      - "traefik.http.routers.storage.middlewares=strip-storage@docker"
+      - "traefik.http.routers.storage.entrypoints=web"
+      
+  minio:
+    image: minio/minio:RELEASE.2021-09-24T00-24-24Z
+    entrypoint: sh
+    command: -c 'mkdir -p /data/nhost && /opt/bin/minio server --address :8484 /data'
+    environment:
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_KEY}
+    ports:
+      - ${MINIO_PORT:-8484}:8484
+    networks:
+      - hasura
+    volumes:
+      - minio_data:/data
+
+  mailhog:
+    image: mailhog/mailhog
+    environment:
+      SMTP_HOST: ${AUTH_SMTP_HOST:-mailhog}
+      SMTP_PORT: ${AUTH_SMTP_PORT:-1025}
+      SMTP_PASS: ${AUTH_SMTP_PASS:-password}
+      SMTP_USER: ${AUTH_SMTP_USER:-user}
+      SMTP_SECURE: "${AUTH_SMTP_SECURE:-false}"
+      SMTP_SENDER: ${AUTH_SMTP_SENDER:-hbp@hbp.com}
+    ports:
+      - ${AUTH_SMTP_PORT:-1025}:1025 
+      - 8025:8025
+    networks:
+      - hasura
+    volumes:
+      - hasura_mailhog:/maildir
+
+
+networks:
+  hasura:
+  web:
+    external: true
+
+volumes:
+  hasura_db:
+  hasura_mailhog:
+  minio_data:
