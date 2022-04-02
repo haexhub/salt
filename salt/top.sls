@@ -10,5 +10,5 @@ base:
     - portainer
     - camunda
     - user.noxi
-    - nhost.install
+    #- nhost.install
     
