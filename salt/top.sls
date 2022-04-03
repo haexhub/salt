@@ -11,4 +11,6 @@ base:
     - camunda
     - user.noxi
     - nhost.stop
+  'xintero.de':
+    - hashivault.install
     
