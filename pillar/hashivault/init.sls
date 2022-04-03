@@ -1,1 +1,2 @@
-port: 8200
+hashivault:
+  port: 8200
