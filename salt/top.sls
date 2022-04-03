@@ -12,6 +12,7 @@ base:
     - user.noxi
     - nhost.stop
   'xintero.de':
+    - docker
     - vim.install
     - hashivault.install
     
