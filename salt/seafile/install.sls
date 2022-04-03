@@ -1,3 +1,6 @@
+include:
+  - seafile.create_env
+  
 deploy seafile container:
   file.managed:
     - name: /usr/share/docker/seafile/docker-compose.yml

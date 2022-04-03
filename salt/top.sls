@@ -6,7 +6,7 @@ base:
   'haex.space':
     - docker
     - traefik.install
-    - seafile
+    - seafile.install
     - portainer
     - camunda
     - user.noxi
