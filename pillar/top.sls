@@ -7,4 +7,5 @@ base:
     - seafile
   'xintero.de':
     - hostname.xintero_de
+    - hashivault
     
