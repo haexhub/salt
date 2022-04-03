@@ -7,7 +7,7 @@ services:
       - "127.0.0.1:${VAULT_PORT:-8200}:8200"
     environment:
       VAULT_ADDR: "${HOSTNAME}:${VAULT_PORT:-8200}"
-      VAULT_DEV_ROOT_TOKEN_ID: "${VAULT_PASSWORD}"
+      VAULT_DEV_ROOT_TOKEN_ID: "${VAULT_ROOT_TOKEN}"
     cap_add:
       - IPC_LOCK
     networks:
