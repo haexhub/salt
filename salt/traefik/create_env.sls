@@ -1,6 +1,6 @@
 make sure traefik env file exists:
   file.managed:
-    - name: /usr/share/docker/hashivault/.env
+    - name: /usr/share/docker/traefik/.env
 
 set traefik env variables:
   file.keyvalue:
