@@ -1,4 +1,9 @@
-create seafile env file:
+make sure seafile env file exists:
+  file.managed:
+    - name: /usr/share/docker/seafile/.env
+    - makedirs: True
+
+set seafile env variables:
   file.keyvalue:
     - name: /usr/share/docker/seafile/.env
     - key_values: 
