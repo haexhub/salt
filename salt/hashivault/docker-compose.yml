@@ -11,10 +11,23 @@ services:
     cap_add:
       - IPC_LOCK
     networks:
-      vault-network:
-        ipv4_address: 172.21.0.10
-        aliases:
-          - vault-server
+      - web
+      #vault-network:
+      #  ipv4_address: 172.21.0.10
+      #  aliases:
+      #    - vault-server
+    labels:
+      - traefik.enable=true
+      
+      - traefik.http.routers.hashivault.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
+      - traefik.http.routers.hashivault.rule=Host(`files.${HOSTNAME}`)
+
+      - traefik.http.routers.hashivault_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
+      - traefik.http.routers.hashivault_secure.rule=Host(`files.${HOSTNAME}`)
+      - traefik.http.routers.hashivault_secure.tls.certresolver=le
+
+      - traefik.http.services.hashivault.loadbalancer.server.port=8200
+
 
 networks:
   vault-network:
