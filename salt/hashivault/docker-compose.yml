@@ -20,10 +20,10 @@ services:
       - traefik.enable=true
       
       - traefik.http.routers.hashivault.entrypoints=${TRAEFIK_HTTP_ENDPOINT}
-      - traefik.http.routers.hashivault.rule=Host(`files.${HOSTNAME}`)
+      - traefik.http.routers.hashivault.rule=Host(`vault.${HOSTNAME}`)
 
       - traefik.http.routers.hashivault_secure.entrypoints=${TRAEFIK_HTTPS_ENDPOINT}
-      - traefik.http.routers.hashivault_secure.rule=Host(`files.${HOSTNAME}`)
+      - traefik.http.routers.hashivault_secure.rule=Host(`vault.${HOSTNAME}`)
       - traefik.http.routers.hashivault_secure.tls.certresolver=le
 
       - traefik.http.services.hashivault.loadbalancer.server.port=8200
