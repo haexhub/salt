@@ -13,6 +13,7 @@ base:
     - nhost.stop
   'xintero.de':
     - docker
+    - portainer
     - traefik.install
     - hashivault.install
     
