@@ -3,6 +3,8 @@ creat user account for haex with ssh key:
     - name: haex
     - shell: /bin/bash
     - home: /home/haex
+    - uid: 1000
+    - gid: 1000
     - optional_groups:
         - sudo
         - wheel
