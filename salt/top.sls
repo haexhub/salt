@@ -4,7 +4,8 @@ base:
     - user.haex
     - ssh
   'haex.space':
-    - docker
+    - lldap
+    - docker.install
     - traefik.install
     - seafile.install
     - portainer
