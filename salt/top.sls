@@ -13,6 +13,6 @@ base:
     - nhost.stop
   'xintero.de':
     - docker
-    - vim.install
+    - traefik.install
     - hashivault.install
     
