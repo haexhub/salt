@@ -1,6 +1,7 @@
 make sure traefik env file exists:
   file.managed:
     - name: /usr/share/docker/traefik/.env
+    - makedirs: True
 
 set traefik env variables:
   file.keyvalue:

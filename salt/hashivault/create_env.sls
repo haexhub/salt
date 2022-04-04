@@ -1,6 +1,7 @@
 make sure hashivault env file exists:
   file.managed:
     - name: /usr/share/docker/hashivault/.env
+    - makedirs: True
 
 set env variables for hashivault:
   file.keyvalue:
