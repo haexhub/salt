@@ -34,3 +34,7 @@ services:
 volumes:
   lldap_data:
     driver: local
+
+networks:
+  web:
+    external: true
