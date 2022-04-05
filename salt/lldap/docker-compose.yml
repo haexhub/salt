@@ -17,7 +17,7 @@ services:
     environment:
       - LLDAP_JWT_SECRET=${LLDAP_JWT_SECRET}
       - LLDAP_LDAP_USER_PASS=${LLDAP_LDAP_USER_PASS}
-      - LLDAP_LDAP_BASE_DN=cn=haex,ou=user,dc=haex,dc=space
+      - LLDAP_LDAP_BASE_DN=dc=haex,dc=space
     labels:
       - traefik.enable=true
 
