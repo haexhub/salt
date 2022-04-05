@@ -11,7 +11,7 @@ services:
       # For the web front-end
       - "17170:17170"
     volumes:
-      - "lldap_data:/data"
+      - lldap_data:/data
       # Alternatively, you can mount a local folder
       # - "./lldap_data:/data"
     environment:
@@ -33,7 +33,6 @@ services:
 
 volumes:
   lldap_data:
-    driver: local
 
 networks:
   web:
